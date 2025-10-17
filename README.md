@@ -1,38 +1,41 @@
-# vuecompositionapi
+# 📝 Vue 3 Posts Manager
 
-This template should help get you started developing with Vue 3 in Vite.
+Простое, но полноценное CRUD-приложение для управления постами, построенное на современном стеке Vue 3.  
+Идеально подходит как шаблон для быстрого старта или учебного проекта.
 
-## Recommended IDE Setup
+- ✅ Создание, чтение, редактирование и удаление постов (CRUD)
+- ⚡ Реактивность через **Composition API**
+- 🧠 Управление состоянием с **Pinia**
+- 🧭 Маршрутизация через **Vue Router**
+- 🗄️ Бэкенд на **json-server** (REST API из `db.json`)
+- 🐳 Полная изоляция и развёртывание через **Docker Compose**
+- 🚀 Готово к интеграции с **CI/CD**
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## 🛠️ Технологии
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- **Frontend**: Vue 3, Composition API, Pinia, Vue Router, Vite
+- **Backend**: json-server (мок REST API)
+- **Контейнеризация**: Docker, Docker Compose
+- **Сборка**: Vite → Nginx (продакшен)
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 🚀 Быстрый старт
 
-## Project Setup
+Убедитесь, что у вас установлены:
+- [Docker](https://www.docker.com/) и [Docker Compose](https://docs.docker.com/compose/)
 
-```sh
-npm install
-```
+### 1. Клонируйте репозиторий
 
-### Compile and Hot-Reload for Development
+bash
+git clone https://github.com/velial1108/vue-posts-manager.git
+cd vue-posts-manager
 
-```sh
-npm run dev
-```
+### 2. Запустите приложение
+bash
+docker-compose up --build
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+### 3. Откройте в браузере
+👉 http://localhost:8080
