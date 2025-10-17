@@ -1,0 +1,52 @@
+# Зависимости — устанавливаются внутри контейнера
+node_modules
+
+# Системные и скрытые файлы
+.git
+.gitignore
+.svn
+.hg
+.env
+.env.local
+.env.*.local
+
+# Логи и временные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+logs
+*.log
+tmp
+.DS_Store
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Сборочные артефакты (если генерируются локально)
+dist
+dist-ssr
+dist-client
+dist-server
+out
+build
+.cache
+.temp
+coverage
+
+# Тесты
+__tests__/
+test/
+tests/
+*.spec.js
+*.test.js
+
+# Прочее (необязательно, но можно)
+README.md
+CHANGELOG.md
+LICENSE

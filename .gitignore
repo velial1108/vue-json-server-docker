@@ -1,0 +1,32 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+.pnpm-debug.log
+.npm
+.yarn
+
+# Build
+dist/
+out/
+.nuxt
+.next
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Docker
+data/          # ← особенно важно, если там локальная БД (db.json может быть, но решайте сами)
+*.log
+
+# macOS
+.DS_Store

@@ -1,0 +1,16 @@
+# Dockerfile.json-server
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Устанавливаем json-server глобально
+RUN npm install -g json-server
+
+# Копируем db.json
+COPY data/db.json ./db.json
+
+# Порт
+EXPOSE 3000
+
+# Запускаем сервер
+CMD ["json-server", "--watch", "/data/db.json", "--port", "3000", "--host", "0.0.0.0"]
