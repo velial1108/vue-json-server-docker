@@ -1,13 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-// ФИКСИРУЕМ ДЛЯ GITHUB PAGES
 const router = createRouter({
-    // ВАЖНО: Указываем base путь явно
     history: createWebHistory('/vue-json-server-docker/'),
     routes: [
         {
             path: '/',
-            redirect: '/admin/dashboard'  // Меняем на админку вместо dashboard
+            redirect: '/admin/dashboard'
         },
         {
             path: '/admin/dashboard',
@@ -44,11 +42,11 @@ const router = createRouter({
             component: () => import('@/pages/posts/index.vue'),
             name: 'posts.index'
         },
-        // Добавляем catch-all для SPA (важно для прямых ссылок)
-        {
-            path: '/:pathMatch(.*)*',
-            redirect: '/'
-        }
+        // УБЕРИТЕ catch-all route если он есть - он может вызывать цикл
+        // {
+        //   path: '/:pathMatch(.*)*',
+        //   redirect: '/'
+        // }
     ]
 })
 
