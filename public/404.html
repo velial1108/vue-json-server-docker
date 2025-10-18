@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <script>
+        // GitHub Pages SPA fix
+        sessionStorage.redirect = location.pathname;
+        window.location.href = '/vue-json-server-docker/' + location.pathname;
+    </script>
+</head>
+<body>
+<p>Redirecting to application...</p>
+</body>
+</html>

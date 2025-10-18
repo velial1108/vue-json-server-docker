@@ -8,26 +8,19 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
-    tailwindcss(),
+    // Указываем конфиг для Tailwind
+    tailwindcss({
+      config: './tailwind.config.js'
+    }),
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  // ВАЖНО: Для корневого index.html
   base: '/vue-json-server-docker/',
   build: {
     outDir: 'dist',
-    emptyOutDir: true,
-    // Явно указываем корневой index.html
-    rollupOptions: {
-      input: {
-        main: './index.html'
-      }
-    }
-  },
-  // Указываем корневую папку
-  root: '.',
-  publicDir: 'public'
+    emptyOutDir: true
+  }
 })
