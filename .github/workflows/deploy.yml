@@ -54,3 +54,15 @@ jobs:
           echo "🎉 Ваше приложение доступно по адресу:"
           echo "https://${{ github.repository_owner }}.github.io/vue-json-server-docker/"
           echo "📝 Примечание: На GitHub Pages работают мок-данные"
+
+      - name: 🛠️ Build project
+        run: |
+          echo "=== PROJECT STRUCTURE ==="
+          ls -la
+          echo "=== BUILDING ==="
+          npm run build
+          echo "=== CHECKING DIST FOLDER ==="
+          find dist/ -type f -name "*.html" -o -name "*.js" -o -name "*.css" | head -20
+          echo "=== INDEX.HTML CONTENT ==="
+          cat dist/index.html | grep -o 'src="[^"]*"' || echo "No src attributes found"
+          cat dist/index.html | grep -o 'href="[^"]*"' || echo "No href attributes found"
