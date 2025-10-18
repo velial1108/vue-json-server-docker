@@ -1,0 +1,56 @@
+name: Deploy Vue App to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+
+# Разрешаем запись для GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build application
+        run: |
+          # Создаем env файл для GitHub Pages
+          echo "VITE_API_BASE_URL=/" > .env.production
+          echo "VITE_APP_TITLE=Vue Composition API App" >> .env.production
+          
+          # Собираем приложение
+          npm run build
+          echo "✅ Приложение собрано для GitHub Pages!"
+
+      - name: 📁 Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: github-pages
+          path: dist/
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ✅ Display deployment URL
+        run: |
+          echo "🎉 Ваше приложение доступно по адресу:"
+          echo "https://${{ github.repository_owner }}.github.io/vue-json-server-docker/"
+          echo "📝 Примечание: На GitHub Pages работают мок-данные"

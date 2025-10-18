@@ -1,45 +1,50 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
+// ИСПРАВЛЯЕМ ДЛЯ GITHUB PAGES
 const router = createRouter({
-    history: createWebHistory(),
-    routes:[
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes: [
         {
             path: '/admin/dashboard',
             component: () => import('@/pages/admin/dashboard/index.vue'),
-            name:'admin.dashboard.index'
+            name: 'admin.dashboard.index'
         },
         {
             path: '/admin/posts',
             component: () => import('@/pages/admin/posts/index.vue'),
-            name:'admin.posts.index'
+            name: 'admin.posts.index'
         },
-        //сначала create он выполнится раньше, параметризированные route должны быть в конце списка
         {
             path: '/admin/posts/create',
             component: () => import('@/pages/admin/posts/create.vue'),
-            name:'admin.posts.create'
+            name: 'admin.posts.create'
         },
-        // заданный параметр id для каждого поста show (параметризированный роут за счет :id)
         {
             path: '/admin/posts/:id',
             component: () => import('@/pages/admin/posts/show.vue'),
-            name:'admin.posts.show'
+            name: 'admin.posts.show'
         },
         {
             path: '/admin/posts/:id/edit',
             component: () => import('@/pages/admin/posts/edit.vue'),
-            name:'admin.posts.edit'
+            name: 'admin.posts.edit'
         },
         {
             path: '/dashboard',
             component: () => import('@/pages/dashboard/index.vue'),
-            name:'dashboard.index'
+            name: 'dashboard.index'
         },
         {
             path: '/posts',
             component: () => import('@/pages/posts/index.vue'),
-            name:'posts.index'
+            name: 'posts.index'
+        },
+        // ДОБАВЛЯЕМ РЕДИРЕКТ НА ГЛАВНУЮ
+        {
+            path: '/',
+            redirect: '/dashboard'
         }
     ]
 })
+
 export default router
