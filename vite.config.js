@@ -18,7 +18,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  base: '/', // ← для локальной разработки
+  base: '/vue-json-server-docker/', // ← для локальной разработки
   server: {
     host: '0.0.0.0',
     port: 5173,

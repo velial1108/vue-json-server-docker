@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
-    history: createWebHistory('/vue-json-server-docker/'),
+    history: createWebHistory(),
     routes: [
         {
             path: '/',
