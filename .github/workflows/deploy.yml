@@ -1,10 +1,10 @@
 name: Deploy Vue App to GitHub Pages
-
+#действие пуш на основные ветки main и master
 on:
   push:
     branches: [ main, master ]
 
-# Разрешаем запись для GitHub Pages
+# Разрешаем запись для GitHub Pages, привилегии
 permissions:
   contents: write
   pages: write

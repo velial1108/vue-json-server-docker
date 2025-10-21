@@ -42,11 +42,6 @@ const router = createRouter({
             component: () => import('@/pages/posts/index.vue'),
             name: 'posts.index'
         },
-        // УБЕРИТЕ catch-all route если он есть - он может вызывать цикл
-        // {
-        //   path: '/:pathMatch(.*)*',
-        //   redirect: '/'
-        // }
     ]
 })
 
