@@ -1,10 +1,9 @@
 name: Deploy Vue App to GitHub Pages
-#действие пуш на основные ветки main и master
+
 on:
   push:
     branches: [ main, master ]
 
-# Разрешаем запись для GitHub Pages, привилегии
 permissions:
   contents: write
   pages: write
@@ -29,40 +28,33 @@ jobs:
 
       - name: 🏗️ Build application
         run: |
-          # Создаем env файл для GitHub Pages
+          # Создаём .env.production для GitHub Pages (статический хостинг → моки)
           echo "VITE_API_BASE_URL=/" > .env.production
           echo "VITE_APP_TITLE=Vue Composition API App" >> .env.production
           
           # Собираем приложение
           npm run build
-          echo "✅ Приложение собрано для GitHub Pages!"
+          echo "✅ Приложение успешно собрано!"
+
+      - name: 🔍 Verify build output
+        run: |
+          echo "=== PROJECT STRUCTURE ==="
+          ls -la
+          echo "=== DIST CONTENTS (HTML/JS/CSS) ==="
+          find dist/ -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) | head -20
+          echo "=== ASSETS IN index.html ==="
+          grep -oE '(src|href)="[^"]*"' dist/index.html || echo "⚠️ No assets found in index.html"
 
       - name: 📁 Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
           path: dist/
 
       - name: 🚀 Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ✅ Display deployment URL
+      - name: ✅ Deployment info
         run: |
-          echo "🎉 Ваше приложение доступно по адресу:"
-          echo "https://${{ github.repository_owner }}.github.io/vue-json-server-docker/"
-          echo "📝 Примечание: На GitHub Pages работают мок-данные"
-
-      - name: 🛠️ Build project
-        run: |
-          echo "=== PROJECT STRUCTURE ==="
-          ls -la
-          echo "=== BUILDING ==="
-          npm run build
-          echo "=== CHECKING DIST FOLDER ==="
-          find dist/ -type f -name "*.html" -o -name "*.js" -o -name "*.css" | head -20
-          echo "=== INDEX.HTML CONTENT ==="
-          cat dist/index.html | grep -o 'src="[^"]*"' || echo "No src attributes found"
-          cat dist/index.html | grep -o 'href="[^"]*"' || echo "No href attributes found"
+          echo "🎉 Приложение опубликовано!"
+          echo "🔗 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          echo "📝 Примечание: На GitHub Pages используются мок-данные (нет бэкенда)."

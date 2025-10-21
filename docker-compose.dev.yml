@@ -1,0 +1,23 @@
+# docker-compose.dev.yml
+version: '3.8'
+
+services:
+  vue-app:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules  # избегаем конфликтов
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host 0.0.0.0
+    # Не зависит от бэкенда, если прокси в Vite
+
+  json-server:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "3000:3000"
+    command: npx json-server data/db.json --host 0.0.0.0 --port 3000 --watch
